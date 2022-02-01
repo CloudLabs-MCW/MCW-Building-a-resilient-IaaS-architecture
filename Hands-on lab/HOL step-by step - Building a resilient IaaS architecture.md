@@ -484,15 +484,15 @@ In this exercise, you will enable a secondary DR site in East US 2. This site wi
 
 In this task, you will deploy the resources used by the DR environment. First, you will deploy a template which will create the network and virtual machines. You will then manually deploy the Recovery Services Vault and Azure Automation account used by Azure Site Recovery.
 
-1.  In a new browser tab, navigate to **https://shell.azure.com**. Open a **PowerShell** session, and on **You have no storage mounted** dialog box click on **Show advanced settings**. Select Create new under Storage account and provide values as below: 
+1.  In a new browser tab, navigate to **https://shell.azure.com**. Open a **PowerShell** session, and on **You have no storage mounted** dialog box click on **Show advanced settings**. Select **Create new** under Storage account and File share then provide the values as below: 
   
+      - **Resource group** : **ContosoRG1**
       - **Storage account** : **storage{uniquestring}**
-      
       - **File Share** : **blob**
    
     > **Note**: Storage account name should be always unique.
 
-    ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.png "Azure Cloud Shell storage account")
+    ![Screenshot of the Azure Cloud Shell to create storage account.](images/shell-storage-create.1.png "Azure Cloud Shell storage account")
 
     ![Screenshot of the Azure Cloud Shell with URL and PowerShell mode highlighted.](images/dr-cloudshell.png "Azure Cloud Shell")
 
@@ -852,6 +852,8 @@ Custom scripts in Azure Automation are called by Azure Site recovery to add the 
     - **Target virtual network**: VNet2
 
     Review the settings for each VM, keeping their default values. Then select **OK**.
+    
+    > **Note**: If Vnet2 is not listed under the **Target virtual network** dropdown, close the **Customize target settings** blade. Select any region under **Target location** on the **Replication settings** tab and then select the **East US 2** region again. Now you should be able to select the Vnet2 virtual network from the dropdown.
 
     ![In the Customize target settings blade, under General Settings and VM Settings fields are set to the previously defined settings.](images/dr-asr-5.png "Configure settings blade")
 
@@ -987,6 +989,8 @@ In this task, you will use the Front Door approach to configure a highly availab
     - **Backend host header**: Paste in the DNS name for the **ContosoWebLBSecondaryIP** Public IP Address (in the **ContosoRG2** resource group).
     - **Priority**: 2
 
+   > **Note** : Sometimes there is a possibility that **ContosoWebLBSecondaryIP** will not be listed in the **Backend host name** dropdown list. In this case, you can go ahead and create the backend pool with only one backend. Once the **ContosoPool** is created it will be listed under backend pools, select it and try to add backend **ContosoWebLBSecondaryIP** again by performing Step 6.
+   
     ![The Add a backend pane has the previously specified values set.](images/dr-fd-be2.png "Add a backend pane")
 
 7. Select **Add** to create the backend pool.
@@ -1069,13 +1073,13 @@ In this task, you will configure Azure Backup for the Web tier virtual machines.
     - **Retain instant recovery snapshots for**: 2 day(s)
     - **Retention of daily backup point**: Enabled, 180 days
     - **Retention of weekly backup point**: Enabled, Sunday, 12 weeks
-    - **Retention of monthly backup point**: Enabled, First Sunday, 24 months
+    - **Retention of monthly backup point**: Enabled, week-based, First Sunday, 24 months
     - **Retention of yearly backup point**: Enabled, day-based, January 1, 5 years
     - **Azure Backup Resource Group**: ContosoBackupRG
 
     When finished, select **OK**.
 
-    ![Azure portal screenshot showing the Backup Policy settings, completed as described.](images/bk-vm2.png "Backup Policy")
+    ![Azure portal screenshot showing the Backup Policy settings, completed as described.](images/bk-vm2.1.png "Backup Policy")
 
 3.  On the 'Backup' blade, under 'Virtual Machines', select **Add**. Select the **WebVM1** and **WebVM2** virtual machines, then **OK**.
 
@@ -1159,9 +1163,9 @@ Before enabling Azure Backup, you will first register the SQL Server VMs with th
 
     ![Azure portal screenshot showing the SQLVM1 and SQLVM2 SQL virtual machine resources.](images/bk-sql-rp3.png "SQL virtual machine resources")
 
-6. Select the **SQLVM1** virtual machine (the standard VM resource, not the SQL virtual machine resource). Then select **Extensions**. Note that the **SqlIaaSExtension** has been installed on the virtual machine.
+6. Select the **SQLVM1** virtual machine (the standard VM resource, not the SQL virtual machine resource). Then select **Extensions+applications**. Note that the **SqlIaaSExtension** has been installed on the virtual machine.
 
-    ![Azure portal screenshot showing the SqlIaaSExtension has been deployed to SQLVM1.](images/bk-sql-rp4.png "SqlIaaSExtension")
+    ![Azure portal screenshot showing the SqlIaaSExtension has been deployed to SQLVM1.](images/bk-sql-rp4.1.png "SqlIaaSExtension")
 
 With the SQL virtual machine resources created and the SQL IaaS extension installed, you can now configure Azure Backup for virtual machines.
 
@@ -1265,7 +1269,7 @@ In this task we will validate high availability for both the Web and SQL tiers.
 
 In this task, you will validate failover of the Contoso application from Central US to East US 2. The failover is orchestrated by Azure Site Recovery using the recovery plan you configured earlier. It includes failover of both the web tier (creating new Web VMs from the replicated data) and SQL Server tier (failover to the SQLVM3 asynchronous replica). The failover process is fully automated, with custom steps implemented using Azure Automation runbooks which are triggered by the Recovery Plan.
 
-1.  Using the Azure portal, open the **ContosoRG1** resource group. Navigate to the Front Door resource, locate Frontend Host URL and open it in a new browser tab. it to ensure that the application is up and running from the Primary Site.
+1.  Using the Azure portal, open the **ContosoRG1** resource group. Navigate to the Front Door resource, locate Frontend Host URL and copy the value. Open a new browser tab, paste the value then replace **https with http** in the URL and hit enter to ensure that the application is up and running from the Primary Site.
 
     ![The Frontend host link is called out.](images/image318.png "Frontend host")
 
