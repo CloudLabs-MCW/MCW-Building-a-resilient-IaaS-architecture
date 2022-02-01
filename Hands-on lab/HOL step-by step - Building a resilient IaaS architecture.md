@@ -1274,6 +1274,8 @@ In this task, you will validate failover of the Contoso application from Central
     ![The Frontend host link is called out.](images/image318.png "Frontend host")
 
     Keep this browser tab open, you will return to it later in the lab.
+    
+    > Note: Be sure to use HTTP to access the Azure Front Door frontend host URL. The lab configurations only supports HTTP for Front Door since WebVM1 and WebVM2 are only set up for HTTP support, not HTTPS (no SSL\TLS).
 
     > **Note:** If you get a "Our services aren't available right now" error (or a 404-type error) accessing the web application, then continue with the lab and come back to this later. Sometime this can take a ~10 minutes for the routing rules to publish before it's "live".
     >
@@ -1377,6 +1379,7 @@ In this task, you will failback the Contoso application from the DR site in East
 
 4.  Confirm that the Contoso application is once again accessible via the **ContosoWebLBPrimaryIP** public IP address, and is **not** available at the **ContosoWebLBSecondaryIP** address. This shows it has been returned to the primary site. Open the **Current Policy Offerings** and edit a policy, to confirm database access. 
 
+    > **Note:** Be sure to use HTTP to access the Azure Front Door frontend host URL. The lab configurations only supports HTTP for Front Door since WebVM1 and WebVM2 are only set up for HTTP support, not HTTPS (no SSL\TLS).
     > **Note:** If you get a "Our services aren't available right now" error (or a 404-type error) accessing the web application, verify that you are utilizing the **ContosoWebLBPrimaryIP**.  If it does not come up within ~10 minutes, verify that the backend system is responding.
 
 5.  Confirm also that the Contoso application is also available via the Front Door URL.
