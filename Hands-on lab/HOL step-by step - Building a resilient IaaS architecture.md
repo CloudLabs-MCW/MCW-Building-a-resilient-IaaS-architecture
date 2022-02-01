@@ -1516,15 +1516,3 @@ In this task you will validate the ability to restore the Contoso application da
     ![Screenshot showing the restored database in SQL Server Management Studio.](images/v-bk-sql7.png "Restored database")
 
     > **Note:** You can now either copy data from the restored database to the production database, or add this database to the Always On Availability Group and switch the Web tier to use the restored database.
-
-## After the hands-on lab
-
-### Task 1: Delete the lab resources
-
-1.  Within the Azure portal, select Resource Groups on the left navigation.
-
-2.  To delete the Recovery Services Vaults, you will first need to open the vaults, disable all VM backup and replication and delete any backup and replicated data. 
-
-3.  Delete each of the resource groups created in this lab by selecting them followed by the **Delete resource group** button. You will need to confirm the name of the resource group to delete.
-
-You should follow all steps provided ***after*** attending the hands-on lab.
