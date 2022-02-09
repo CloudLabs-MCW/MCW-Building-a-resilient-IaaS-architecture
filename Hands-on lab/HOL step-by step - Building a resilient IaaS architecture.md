@@ -298,6 +298,8 @@ In this task, you will build a Windows Failover Cluster and configure SQL Always
 
 27. Select **Connect** to sign on to **SQLVM1**. **Note**: The username for your lab should show **CONTOSO\demouser**.
 
+    >**Note**: If you are facing an issue with the server connecting. Please restart the SQL server i.e, **SQLVM1** and then try to connect.
+
     ![Screenshot of the Connect to Server dialog box.](images/image173.png "Connect to Server dialog box")
 
 28. Right-click **Always On High Availability**, then select **New Availability Group Wizard**.
