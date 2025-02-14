@@ -156,7 +156,7 @@ In this task, you will deploy the resources the DR environment uses. First, you 
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need assistance, please contact us at **cloudlabs-support@spektrasystems.com**. We are available 24/7 to help.
-   <validation step="1134d3fd-1557-47f5-89db-4b6eebd50650" />
+   <validation step="cfb27002-f242-499b-9520-1907eb6a4f01" />
 
 ### Task 2: Inspect DR for the Domain Controller Tier
 
@@ -344,7 +344,6 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
     ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images1/E2T3S281.png "Failover Cluster Manager")
 
-
 ### Task 4: Configure DR for the Web Tier
 
 You will configure DR for the Contoso application web tier in this task.
@@ -469,7 +468,7 @@ Azure Site Recovery calls custom scripts in Azure Automation to add the recovere
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at **cloudlabs-support@spektrasystems.com.** We are available 24/7 to help.
-   <validation step="c1c13d12-b3c0-487b-a713-8b1534088520" />
+   <validation step="041ef301-4250-458e-b0f4-02ed90a57ff5" />
 
 ### Task 5: Configure a Public Endpoint using Azure Front Door
 
@@ -567,7 +566,7 @@ In this task, you will use the Front Door approach to configure a highly availab
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at **cloudlabs-support@spektrasystems.com.** We are available 24/7 to help.
-   <validation step="0bdbfd04-f20a-4db0-abae-810ff8964a34" />
+   <validation step="cc6bb2c9-5006-483f-b48b-65045309ecc5" />
 
 ## Summary 
 

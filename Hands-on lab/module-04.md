@@ -358,7 +358,7 @@ In this task, you will validate the ability to restore the Contoso application d
 > - Hit the Validate button for the corresponding task. If you receive a success message, you can proceed to the next task. 
 > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
 > - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com. We are available 24/7 to help
-<validation step="a1948261-3fef-4f42-8f0c-051afcdfb6d5" />
+<validation step="7bccae7b-93bb-4e79-b9ea-2a8f7df2b5e6" />
 
 ## Summary 
 

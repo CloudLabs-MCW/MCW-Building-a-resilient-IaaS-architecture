@@ -50,7 +50,7 @@ A template will be used to save time. You will configure each tier in subsequent
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at **cloudlabs-support@spektrasystems.com**. We are available 24/7 to help.
-   <validation step="ccb0033a-ade9-4c32-a114-01ddcf952476" />
+   <validation step="907f7934-b841-4ab8-a0aa-b7527f184f5e" />
 
 ### Task 2: Configure HA for the Domain Controller Tier
 

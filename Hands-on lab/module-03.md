@@ -217,7 +217,7 @@ Before enabling Azure Backup, you will register the SQL Server VMs with the SQL 
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
    > - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
    > - If you need any assistance, please contact us at **cloudlabs-support@spektrasystems.com**. We are available 24/7 to help.
-   <validation step="7098dae2-eaf0-4683-b0d8-171c745b9f81" />
+   <validation step="f1b9c6f8-1522-49bd-9332-a0d9c72e134b" />
 
 ## Summary 
 
