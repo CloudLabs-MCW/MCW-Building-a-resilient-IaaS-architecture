@@ -56,7 +56,7 @@ In this task, you will validate the failover of the Contoso application from the
 
 1. Select **Recovery Plans (Site Recovery)** in the **Manage** area, then select **BCDRIaaSPlan**.
 
-    ![In the Recovery Services vault blade, BCDRIaaSPlan is selected in the Recovery Plans view.](images1/E4T2S3.png "Recovery Plans")
+    ![In the Recovery Services vault blade, BCDRIaaSPlan is selected in the Recovery Plans view.](images1/E4T2S3upd.png "Recovery Plans")
 
 1. Select **Failover**.
 
@@ -89,6 +89,8 @@ In this task, you will validate the failover of the Contoso application from the
 1. Review the Failover direction. Notice that **From** is the **Primary** site, and **To** is the **Secondary** site. Select **OK**.
 
     ![Call outs in the Failover blade point to the From and To fields.](images1/E4T2S9upd.png "Failover blade")
+
+    > **Note:** If you still face any errors, make sure that you have published the Workbook from Exercise 2.
 
 1. After the Failover is initiated, close the Failover blade and navigate to **Site Recovery Jobs**. Select the **Failover** job to monitor the progress.
 
@@ -124,7 +126,7 @@ In this task, you will validate the failover of the Contoso application from the
 
     ![The Contoso Insurance PolicyConnect webpage displays. The URL is from Azure Front Door.](images1/E4T2S17.png "Contoso Insurance PolicyConnect webpage")
 
-    > **Note**: If you do not see the webpage after 5 minutes, Follow Step 20 to Step 23
+    > **Note**: If you do not see the webpage after 5 minutes, Follow Step 18 to Step 20
     
 1. If the webpage is responding from the **Secondary** site, go to **ContosoWebLBSecondary** load balancer (1), navigate to **Backend pools** (2), and select **Backend pools** (3)
 
@@ -138,7 +140,7 @@ In this task, you will validate the failover of the Contoso application from the
 
     ![](images/webpageerror3.png)
 
-1. You can now perform the Step 18 and Step 19 again.
+1. You can now perform the Step 16 and Step 17 again.
 
 1. Now that you have successfully tested failover, you need to configure ASR for failback. Move back to the **BCDRSRV** Recovery Service Vault using the Azure portal. Expand **Manage (1)** and select **Recovery Plans (Site Recovery) (2)** on the ASR dashboard. The **BCDRIaaSPlan** will show as **Failover completed (3).** 
 
@@ -172,7 +174,7 @@ In this task, you will validate the failover of the Contoso application from the
 
 In this task, you will failback the Contoso application from the DR site in the Secondary Site back to the Primary site.
 
-1.  Back on the **BCDRRSV<inject key="DeploymentID" enableCopy="false"/>** Recovery Services vault, select **Recovery Plans** and re-open the **BCDRIaaSPlan**. Notice that the VMs are still at the Target since they have failed over to the secondary site.
+1.  Back on the **BCDRRSV<inject key="DeploymentID" enableCopy="false"/>** Recovery Services vault, select **Recovery Plans** and re-open the **BCDRIaaSPlan**. Notice that the VMs are still at the Target since they have failed over to the secondary site. This might take some time.
 
      ![](images/iaas-image56.png)
 
@@ -290,7 +292,7 @@ In this task, you will validate the backup for the Contoso application WebVMs. Y
         
 1. In the **BackupRSV<inject key="DeploymentID" enableCopy="false"/>** vault, navigate to the **Backup Jobs** view. Note that two new jobs are shown as 'In progress', one to take a backup of the VM and a second to restore the VM.
 
-    ![Screenshot showing both backup and restore jobs for WebVM1.](images1/E4T4S11.png "Restore VM Backup Jobs")
+    ![Screenshot showing both backup and restore jobs for WebVM1.](images1/E4T4S11upd.png "Restore VM Backup Jobs")
 
 1. It will take several minutes for the VM to be restored. Wait for the restore to complete before proceeding with the lab.
 

@@ -116,6 +116,8 @@ In this task, you will deploy the resources the DR environment uses. First, you 
 
    > **Note:** When configuring the ASR Recovery Plan for the IaaS deployment, you will use the SQL Runbook as a pre-failover action and the web runbook as a post-failover action. They will run both ways and have been written to take the "direction" of the failover into account when running.
 
+   > **Note:** If you still donot see **Published**, edit the workbook and add a space anywhere and then click on Publish.
+
 1. Next, you will create a variable in Azure Automation that contains settings (such as resource group names and VM names) describing your environment. The runbooks you imported require this information, and using variables allows you to avoid hard-coding it in the runbooks themselves.
 
 1. In your **Azure Automation Account** page, select **Variables (1)**, then **Add a variable (2)**.
