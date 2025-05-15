@@ -42,9 +42,9 @@ Welcome to your Building a Resilient IaaS Architecture Hands-On Lab! We have pre
 
 ## Accessing Your Lab Environment
  
-Once you are ready to dive in, your **virtual machine** and **Lab Guide** will be at your fingertips within the web browser.
+Once you are ready to dive in, your **virtual machine** and **Guide** will be at your fingertips within the web browser.
  
-![](images/labguide1upd1.png "Lab Environment")
+![](images/labguide1upd2.png "Lab Environment")
 
 ## Virtual Machine & Lab Guide
  
@@ -54,19 +54,19 @@ Your virtual machine is your workhorse throughout the workshop. The lab guide is
  
 To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
  
-![](images/envdetails2.png)
+![](images/envdetails2ups.png)
  
 ## Utilizing the Split Window Feature
  
 For convenience, you can open the lab guide in a separate window by selecting the **Split Window** icon at the top right corner.
 
-![](images/GS8upd1.png)
+![](images/GS8upd2.png)
  
 ## Managing Your Virtual Machine
  
 Feel free to **start, stop, or restart (3)** your virtual machine as needed from the **Resources (2)** tab by clicking on the drop-down arrow beside the **More (1)** option. Your experience is in your hands!
  
-![](images/GS5.png)
+![](images/GS5upd.png)
 
 ## Lab Guide Zoom In/Zoom Out
 
