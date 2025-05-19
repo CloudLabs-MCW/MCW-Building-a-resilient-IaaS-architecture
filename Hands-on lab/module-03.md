@@ -121,7 +121,6 @@ Before enabling Azure Backup, you will register the SQL Server VMs with the SQL 
 
     > **Note:** It may take several minutes to register the resource provider. Wait until the registration is complete before proceeding to the next step. You can check the registration status using `Get-AzResourceProvider -ProviderNamespace Microsoft.SqlVirtualMachine`.
 
-
 1. Register **SQLVM1** with the resource provider by executing the following command in the Cloud Shell window. Ensure that **-Location** matches the location where SQLVM1 is deployed.
 
     ```PowerShell

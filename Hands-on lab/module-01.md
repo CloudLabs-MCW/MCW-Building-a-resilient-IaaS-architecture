@@ -100,7 +100,6 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     ![](images/iaas-image8.png)
 
-
 1.  Switch to the **Advanced** tab. Select the checkbox next to **Allow enabling anonymous access on individual containers (1)**, change the **Minimum TLS version** to **Version 1.0 (2)**, and select **Review + create (3)**, followed by clicking on the **Create** option.
 
     ![](images/iaas-image9.png)
@@ -135,16 +134,14 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
     ![](images/iaas-image15.png)
 
 > **Note:** When using Azure Bastion to connect to a VM using domain credentials, the username must be specified in `user@domain-fqdn` format, **not** as `domain\user`.
+    ![](images/iaas-image16.png)
 
-![](images/iaas-image16.png)
-    
 > **Note:** Recheck the text and images copied to the clipboard prompt before selecting **Allow**.
 
-1.  On **SQLVM1**, select **Start (1)** and then choose **Windows PowerShell ISE (2)**.
+10.  On **SQLVM1**, select **Start (1)** and then choose **Windows PowerShell ISE (2)**.
 
      ![](images/iaas-image17.png)
-
-    >**Note**: Please minimize the **Server Manager** window 
+     >**Note**: Please minimize the **Server Manager** window 
 
 1.  Copy and paste  the following command into **PowerShell ISE** and execute it. This will create the **Windows Failover Cluster** and add all the SQL VMs as nodes in the cluster. It will also assign a static IP address of **10.0.2.99** to the new **AOGCLUSTER** cluster.
 
@@ -478,7 +475,7 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images1/E1T3S61.png "Failover Cluster Manager")
 
-You have now successfully set up the SQL Server VMs to use Always On Availability Groups with a Cloud Witness storage account located in another region.
+1. You have now successfully set up the SQL Server VMs to use Always On Availability Groups with a Cloud Witness storage account located in another region.
 
 ### Task 4: Configure HA for the Web tier
 

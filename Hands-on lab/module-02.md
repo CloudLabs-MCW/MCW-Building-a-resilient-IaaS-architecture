@@ -80,7 +80,7 @@ In this task, you will deploy the resources the DR environment uses. First, you 
 
 1.  From the Azure portal, search for and select **Automation**.
    
-   ![Screenshot of the Backup / Site Recovery tabs with Site Recovery tab selected.](images1/build3.1.png "Backup / Site Recovery tabs")
+    ![Screenshot of the Backup / Site Recovery tabs with Site Recovery tab selected.](images1/build3.1.png "Backup / Site Recovery tabs")
 
 1.  Complete the **Create an Automation Account** page using the following inputs and then select **Review + Create (4)**:
 
