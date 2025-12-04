@@ -16,7 +16,9 @@ In this task, you will create a vault in the primary region for Azure Backup.
 
 1. On the Azure portal, search **(1)** and select **Recovery Services vaults (2)**, then click on **Create**.
 
-    ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images1/E3T1S1upd.png "Backup and Site Recovery Screen Create Button")
+    ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images/p3t1s1.png "Backup and Site Recovery Screen Create Button")
+
+    ![](images/p3t1s1.1.png)
 
 1.  Complete the **Recovery Services vaults** blade using the following inputs, then click on **Review + create (4)** and **Create**:
 
@@ -24,11 +26,11 @@ In this task, you will create a vault in the primary region for Azure Backup.
     - **Name**: BackupRSV<inject key="DeploymentID" enableCopy="false"/> **(2)**
     - **Location**: <inject key="Region" enableCopy="false" /> *(Primary Region)* **(3)**
 
-    ![Azure portal screenshot showing the Create Recovery Services Vault blade, with the settings filled in as described.](images1/E3T1S2.png "Create Recovery Services Vault")
+      ![Azure portal screenshot showing the Create Recovery Services Vault blade, with the settings filled in as described.](images/p3t1s2.png "Create Recovery Services Vault")
 
 1. Once the deployment is complete, navigate to the **BackupRSV <inject key="DeploymentID" enableCopy="false"/> | Properties** resource page. Select **Properties (1)** and **Backup Configuration (2)**.
 
-    ![Azure portal screenshot showing the properties blade of the Recovery Services Vault.](images1/E3T1S3upd.png "Recovery Services Vault properties")
+    ![Azure portal screenshot showing the properties blade of the Recovery Services Vault.](images/p3t1s3.png "Recovery Services Vault properties")
 
 1.  Under **Backup Configuration**, select **Update**. In the **Backup Configuration** blade, choose **Geo-redundant (1)** as the **Storage replication type** and set the **Cross Region Restore** option to **Enabled (2)**. Then **Apply (3)** your changes and close the **Backup Configuration** panel.
 
@@ -50,7 +52,11 @@ You will configure Azure Backup for the web tier virtual machines in this task. 
 
     ![Azure portal screenshot showing the Getting Started - Backup blade of the Azure Portal, with Azure VMs selected.](images1/E3T2S1.png "Backup VMs")
 
-1.  On the **Configure Backup** page, select **Standard** for Policy sub type, and click on **Create a new policy**. Fill in the **Create Policy** blade as follows:
+1.  On the **Configure Backup** page, select **Standard** for Policy sub type, and click on **Create a new policy**. 
+
+     ![](images/p3t2s2.1.png)
+
+1. Fill in the **Create Policy** blade as follows:
 
     - **Policy name**: `WebVMPolicy` **(1)**
     - **Backup schedule**: Daily, 9 pm, UTC **(2)**
@@ -61,9 +67,9 @@ You will configure Azure Backup for the web tier virtual machines in this task. 
     - **Retention of yearly backup point**: Enabled, day-based, January 1, 5 years **(7)**
     - **Azure Backup Resource Group**: ContosoBackupRG **(8)**
 
-    When finished, select **OK (9).**
+    - When finished, select **OK (9).**
 
-    ![Azure portal screenshot showing the Backup Policy settings, completed as described.](images1/E3T2S2upd1.png "Backup Policy")
+      ![Azure portal screenshot showing the Backup Policy settings, completed as described.](images1/E3T2S2upd1.png "Backup Policy")
 
 1.  On the **Backup** blade, click on **Add (1)** under **Virtual Machines**. Select **WebVM1** and **WebVM2 (2)** virtual machines, then **OK (3)**.
 
@@ -152,9 +158,9 @@ Before enabling Azure Backup, you will register the SQL Server VMs with the SQL 
 
     ![Azure portal screenshot showing the SqlIaaSExtension has been deployed to SQLVM1.](images1/E3T3S6upd1.png "SqlIaaSExtension")
 
-1. In the Azure portal, navigate to the **BackupRSV <inject key="DeploymentID" enableCopy="false"/> | Backup Recovery Services Vault** resource in **ContosoRG1**. Under **Getting started,** select **Backup (1)**. Under **Where is your workload running?** select **Azure (2)**. Under **What do you want to back up?** select **SQL Server in Azure VM (3)**. Then click on **Start Discovery (4)**.
+1. In the Azure portal, navigate to the **BackupRSV <inject key="DeploymentID" enableCopy="false"/> | Backup Recovery Services Vault** resource in **ContosoRG1**. Under **Getting started,** select **Backup (1)**. Under **Where is your workload running?** select **Azure (2)**. Under **What do you want to back up?** select **SQL Database in Azure VM (3)**. Then click on **Start Discovery (4)**.
 
-   ![Azure portal screenshot showing the Getting Started - Backup blade of the Azure Portal, with 'SQL Server in Azure VM' selected.](images1/E3T3S7.png "Backup SQL Server in Azure VM")
+   ![Azure portal screenshot showing the Getting Started - Backup blade of the Azure Portal, with 'SQL Server in Azure VM' selected.](images/p3t3s7.png "Backup SQL Server in Azure VM")
 
 1. In the **Select Virtual Machines** blade, select **SQLVM1** and **SQLVM2**, then click on **Discover DBs**.
 

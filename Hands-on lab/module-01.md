@@ -31,7 +31,7 @@ A template will be used to save time. You will configure each tier in subsequent
 
 1.  While you wait for the HA resources to get deployed, take some time to review the template contents. You can review the template by navigating to the **ContosoRG1** resource group. Click on **Deployments** in the resource group, then select any deployments, followed by a **template**.
 
-    ![Screenshot of the Azure portal showing the HA template contents.](images/Deployment02.png "Screenshot of the Azure portal showing the HA template contents.")
+    ![Screenshot of the Azure portal showing the HA template contents.](images/p1t1s2.png "Screenshot of the Azure portal showing the HA template contents.")
 
     Note that the template includes five sub-templates containing the various resources required for:
 
@@ -104,9 +104,13 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     ![](images/iaas-image9.png)
 
+    ![](images/p1t3s4.png)
+
     > **Note:** Azure storage accounts require TLS version 1.2 by default to promote the latest and most secure standards. This storage account will be used as a Cloud Witness for our SQL Server cluster. SQL Server requires TLS version 1.0 for the Cloud Witness.
 
-1.  Once the storage account is created, navigate to the **Storage account** blade. Expand **Security + networking (1)** and select **Access keys (2)**, then copy the **Storage account name (3)** and click on **show keys**. Copy the **key (4)** and paste the values into your text editor of choice—you will need these values later.
+1.  Once the storage account is created, Click on **Go to resource**. Expand **Security + networking (1)** and select **Access keys (2)**, then copy the **Storage account name (3)** and click on **show keys**. Copy the **key (4)** and paste the values into your text editor of choice—you will need these values later.
+
+    ![](images/p1t3s5.png)
 
     ![](images/iaas-image10.png)
 
@@ -130,8 +134,10 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     - **Username**: `demouser@contoso.com` (3)
     - **Password**: `Demo!pass123` (4)
+
+      ![](images/p1t3s9.png)
     
-    ![](images/iaas-image15.png)
+      ![](images/iaas-image15.png)
 
 > **Note:** When using Azure Bastion to connect to a VM using domain credentials, the username must be specified in `user@domain-fqdn` format, **not** as `domain\user`.
     ![](images/iaas-image16.png)
@@ -221,7 +227,7 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     ![](images/iaas-image36.png)
 
-1. Return to the Azure portal and open a new Azure Bastion session to **SQLVM2** with **Username:** demouser@contoso.com and **Password**: Demo!pass123. Launch **SQL Server 2017 Configuration Manager** and repeat steps 15 to 18, mentioned above, to **enable SQL AlwaysOn** and change the **Log On** username. Make sure that you have restarted the SQL service.
+1. Return to the Azure portal and open a new Azure Bastion session to **SQLVM2** with **Username:** demouser@contoso.com and **Password**: Demo!pass123. Launch **SQL Server 2017 Configuration Manager** and repeat steps 15 to 27, mentioned above, to **enable SQL AlwaysOn** and change the **Log On** username. Make sure that you have restarted the SQL service.
 
 1. Return to the Azure portal and open a second Azure Bastion session to **SQLVM2**. This time, use `demouser` as the **username (1)** instead of `demouser@contoso.com` and use **Password (2)**: `Demo!pass123`. Finally, click on **Connect (3)**.
     ![](images/iaas-image37.png)
@@ -294,11 +300,11 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
 1. Select the **server certificate** and click **Connect** to sign on to **SQLVM1**. **Note**: The username for your lab should show **CONTOSO\demouser**.
 
-    ![Screenshot of the Connect to Server dialog box.](images1/E1T3S33.png "Connect to Server dialog box")
+    ![Screenshot of the Connect to Server dialog box.](images/p1t3s42.png "Connect to Server dialog box")
     
 1. Expand databases and verify that the **ContosoInsurance** is present.  
 
-    > **Note:** Skip on to step-43 if ContosoInsurance is already present.
+    > **Note:** Skip on to step-46 if ContosoInsurance is already present.
 
     ![.](images/upd-1.png)
     
@@ -349,7 +355,7 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
 1. Right-click **AlwaysOn High Availability (1)**, then select **New Availability Group Wizard (2)**.
 
-    ![In Object Explorer, AlwaysOn High Availability is selected, and from its right-click menu, New Availability Group Wizard is selected.](images/image174upd.png "SQ Server Management Studio, Object Explorer")
+    ![In Object Explorer, AlwaysOn High Availability is selected, and from its right-click menu, New Availability Group Wizard is selected.](images/p1t3s52.png "SQ Server Management Studio, Object Explorer")
 
 1. Select **Next** on the Wizard.
 
@@ -361,7 +367,7 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
 1. Select the **ContosoInsurance Database (1)**, then select **Next (2)**.
 
-    ![The ContosoInsurance database is selected from the user databases list.](images/image177upd.png "Select Databases page")
+    ![The ContosoInsurance database is selected from the user databases list.](images/p1t3s55.png "Select Databases page")
 
 1. On the **Specify Replicas** screen next to **SQLVM1**, select **Automatic Failover**.
 
@@ -421,19 +427,21 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
 1. Once the AOG is built, check that each task has a **Success** message beside it. Now, select **Close**.
 
-    ![On the New Availability Group Results page, a message says the wizard has completed successfully, and results for all steps is success. The Close button is selected.](images1/E1T3S51.png "New Availability Group Results page")
+    ![On the New Availability Group Results page, a message says the wizard has completed successfully, and results for all steps is success. The Close button is selected.](images/p1t3s69.png "New Availability Group Results page")
 
 1. Move back to **SQL Management Studio** on **SQLVM1** and expand the **Always On High Availability** item in the tree view. Under Availability Groups, expand the **BCDRAOG (Primary)** item.
 
-    ![In SQL Management Studio, Always On High Availability is expanded in the tree view.](images1/E1T3S52.png "SQL Management Studio")
+    ![In SQL Management Studio, Always On High Availability is expanded in the tree view.](images/p1t3s70.png "SQL Management Studio")
 
 1. Right-click on **BCDRAOG (Primary)** and then select **Show Dashboard**. Ensure all the nodes have been added and are now "**green.**"
+
+    ![](images/p1t3s71.png)
 
     ![Screenshot of the BCDRAOG Dashboard indicating the status of all SQL Server VMs as healthy.](images1/E1T3S53.png "BCDRAOG Dashboard")
 
 1. Next, select **Connect** and **Database Engine (1)** in **SQL Management Studio**.
 
-    ![Connect / Database Engine is selected in Object Explorer.](images/image200upd.png "Object Explorer")
+    ![Connect / Database Engine is selected in Object Explorer.](images/p1t3s72.png "Object Explorer")
 
 1. Enter **BCDRAOG (1)** as the **Server name**. This will be connected to the listener of the group you created. Also, check the box **Trust server certificate (2)** and click on **Connect (3)**. **Note**: The username for your lab should be visible as **CONTOSO\demouser**.
 
@@ -471,9 +479,9 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
     > **Note:** Connecting the first time could take a minute as this is going through the Azure Internal Load Balancer.
 
-1. Move back to **Failover Cluster Manager** on **SQLVM1**. You can review the added IP addresses by selecting **Roles (1)** and **BCDRAOG (2)**. Next, it is time to view the **Resources (3)**. Notice how the **10.0.2.100** is online (4).
+1. Move back to **Failover Cluster Manager** on **SQLVM1**. You can review the added IP addresses by selecting **Roles (1)** and **BCDRAOG (2)**. Next, it is time to view the **Resources (3)**. Notice how the **10.0.2.100** is online **(4)**.
 
-    ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images1/E1T3S61.png "Failover Cluster Manager")
+    ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images/p1t3s79.png "Failover Cluster Manager")
 
 1. You have now successfully set up the SQL Server VMs to use Always On Availability Groups with a Cloud Witness storage account located in another region.
 
@@ -481,10 +489,14 @@ In this task, you will build a **Windows Failover Cluster** and configure **SQL 
 
 In this task, you will configure a High Availability web tier. This comprises two web server VMs, which you will locate behind an Azure load balancer. You will also configure the VMs to access the database using the Always On Availability Group endpoint you created earlier.
 
-1.  In the Azure portal, navigate to **WebVM1**, select **Connect** followed by **Bastion**, and connect to the VM using the following credentials:
+1.  In the Azure portal, navigate to **WebVM1**, select **Connect (1)** followed by **Bastion (2)**, and connect to the VM using the following credentials:
 
-    - **Username**: `demouser@contoso.com`
-    - **Password**: `Demo!pass123`
+    - **Username**: `demouser@contoso.com` **(3)**
+    - **Password**: `Demo!pass123` **(4)**
+
+      ![](images/p1t4s1.png)
+
+      ![](images/p1t4s1.2.png)
 
 1.  In **WebVM1**, open Windows Explorer, navigate to **C:\inetpub\wwwroot**, and open the **Web.config** file using Notepad.
 
@@ -500,7 +512,7 @@ In this task, you will configure a High Availability web tier. This comprises tw
 
 1.  Return to the Azure portal and navigate to the **ContosoWebLBPrimary** load balancer blade. Select **Backend pools (1)** and open **BackEndPool1(1) (2)**.
 
-    ![Azure portal showing path to BackEndPool1 on ContosoWebLBPrimary.](images1/E1T4S5upd.png "Backend pool select path")
+    ![Azure portal showing path to BackEndPool1 on ContosoWebLBPrimary.](images/p1t4s5.png "Backend pool select path")
 
 1.  In the **BackEndPool1** blade, select **VNet1 (ContosoRG1) (1)** as the virtual network. Then click **+ Add (2)** and **select the two (3)** web VMs. Moving on, click on **Save (4)**.
 
