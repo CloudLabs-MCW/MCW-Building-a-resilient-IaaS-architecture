@@ -18,6 +18,10 @@ In this task, we will validate the high availability for both the Web and SQL ti
 
 1.  In the Azure portal, open the **ContosoRG1** resource group. Select the public IP address for the web tier load-balancer, **ContosoWebLBPrimaryIP**. Select the **Overview** tab and copy the DNS name to the clipboard, and navigate to it in a different browser tab.
 
+     ![](images/p4t1s1.png)
+
+     ![](images/p4t1s1.1.png)
+
 1.  The Contoso application is shown. Select **Current Policy Offerings** to view the policy list. This shows the database is accessible. As an additional check, edit an existing policy and save your changes, to show that the database is writable.
 
 1.  Open an Azure Bastion session with **SQLVM1** (with username `demouser@contoso.com` and password `Demo!pass123`). Open **SQL Server Management Studio** and connect to **SQLVM1** using Windows Authentication. Locate the BCDRAOG (Primary) availability group, right-click and select **Show Dashboard**. Note that the dashboard shows **SQLVM1** as the primary replica.
@@ -39,6 +43,8 @@ In this task, we will validate the high availability for both the Web and SQL ti
 1.  Re-open an Azure Bastion session with **SQLVM1** (with username `demouser@contoso.com` and password `Demo!pass123`). Open **SQL Server Management Studio** and connect to **SQLVM1** using Windows Authentication. Locate the BCDRAOG availability group, right-click and select **Show Dashboard**. Note that the dashboard shows **SQLVM1** as the primary replica, and there is a critical warning about **SQLVM2** not being available.
 
     ![SQL Server Management Studio screenshot showing SQLVM1 as the primary replica, with warnings.](images1/E4T1S9.png "SQLVM1 as Primary")
+
+    >**Note :** If yo see SQLVM1 as Secondary, continue performing the task
 
 1. Re-start **SQLVM2** and **WebVM2**.
 
@@ -214,6 +220,8 @@ In this task, you will failback the Contoso application from the DR site in the 
 
     ![The Availability group dashboard displays with SQLVM3 and its properties called out.](images/image400.png "Availability group dashboard")
 
+    > **Note:** If the SQLVM1 is in Secondary you can skip this and start from Task 4.
+
 1. Right-click the **BCDRAOG** and select **Properties**.
 
     ![](images/iaas-image64.png)
@@ -310,7 +318,7 @@ In this task, you will validate the ability to restore the Contoso application d
 
 1.  In the Azure portal, navigate to the **BackupRSV<inject key="DeploymentID" enableCopy="false"/>** in **ContosoRG1**. Under 'Protected items', select **Backup items**, then select **SQL in Azure VM**.
 
-    ![Screenshot showing the path to the SQL in Azure VMs in backup items in the Recovery Services Vault.](images1/E4T5S1.png "Backup items")
+    ![Screenshot showing the path to the SQL in Azure VMs in backup items in the Recovery Services Vault.](images/1.png "Backup items")
 
 1.  From the backup items list, select **View details** for the **contosoinsurance** database.
 

@@ -18,15 +18,17 @@ In this task, you will deploy the resources the DR environment uses. First, you 
 
 1. Navigate to **[Cloud Shell](https://portal.azure.com/#cloudshell/)** in a new browser tab. Open a **PowerShell** session and create a Cloud Shell storage account if prompted.
 
-    ![Screenshot of the Azure Cloud Shell with URL and PowerShell mode highlighted.](images1/build1.png "Azure Cloud Shell")
+    ![Screenshot of the Azure Cloud Shell with URL and PowerShell mode highlighted.](images/p2t1s1.png "Azure Cloud Shell")
+
+    ![](images/p2t1s1.2.png)
 
 1. In the **Getting started** page, select **Mount storage account (1)**, choose the **subscription (2)**, and click on **Apply (3)**.
 
-   ![Screenshot of the Storage account storage.](images1/cloudshellstrg1.png "Azure Cloud Shell")
+   ![Screenshot of the Storage account storage.](images/p2t1s2.png "Azure Cloud Shell")
 
 1. In the **Mount storage account** page, select **We will create a storage account for you (1)** and click **Next (2)**.
 
-   ![Screenshot of the Storage account storage.](images1/cloudshellstrg2.png "Azure Cloud Shell")
+   ![Screenshot of the Storage account storage.](images/p2t1s3.png "Azure Cloud Shell")
 
 1. Update the **-Location** parameter in each command below to specify a secondary location different from **ContosoRG1**. Then, execute the commands to create the Disaster Recovery (DR) resource group and deploy the DR resources. You can proceed to the following tasks while the template deployment progresses.
 
@@ -50,23 +52,25 @@ In this task, you will deploy the resources the DR environment uses. First, you 
     -  An additional SQL Server VM, **SQLVM3**.
     -  Azure Bastion to enable VM access.
 
-    ![Screenshot of the disaster recovery resources for the Web application.](images1/E2T1S3.png "Successful deployment of Web DR resources")
+       ![Screenshot of the disaster recovery resources for the Web application.](images/p2t1s5.png "Successful deployment of Web DR resources")
 
 1. Now, you will create the **Recovery Services vaults** used to replicate the web tier VMs and orchestrate the cross-site failover. From the Azure portal, search for **Recovery Services vaults (1)** and select **(2)** it.
 
-    ![](images/E3T1S1upd.png)
+    ![](images/p2t1s6.png)
 
 1. On the **Recovery Services vaults** page, click on **+Create**.
 
-    ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images/recoveryselect.png "Backup and Site Recovery Screen Create Button")
+    ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images/p2t1s7.png "Backup and Site Recovery Screen Create Button")
 
-1.  Complete the **Create Recovery Services vaults** page using the following inputs, then select **Review and Create (4)**:
+1.  Complete the **Create Recovery Services vaults** page using the following inputs, then select **Review and Create (4)** and click **Create**:
 
     - **Resource Group**: **ContosoRG2 (1)**
     - **Name**: **BCDRRSV<inject key="DeploymentID" /> (2)**
     - **Location**: Your **secondary region (3)** that you choose in step 2
 
-    ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images/recoveryimg.png "Backup and Site Recovery Screen Create Button")
+      ![Screenshot of the Backup and Site Recovery Screen with the Create button selected.](images/p2t1s8.png "Backup and Site Recovery Screen Create Button")
+
+      ![](images/p2t1s8.1.png)
 
 1.  Once the **BCDRRSV<inject key="DeploymentID" enableCopy="false"/>** Recovery Service vault has been created, open it in the Azure portal and select the **Site Recovery** tab.
 
@@ -80,9 +84,9 @@ In this task, you will deploy the resources the DR environment uses. First, you 
 
 1.  From the Azure portal, search for and select **Automation**.
    
-    ![Screenshot of the Backup / Site Recovery tabs with Site Recovery tab selected.](images1/build3.1.png "Backup / Site Recovery tabs")
+    ![Screenshot of the Backup / Site Recovery tabs with Site Recovery tab selected.](images/p2t1s11.png "Backup / Site Recovery tabs")
 
-1.  Complete the **Create an Automation Account** page using the following inputs and then select **Review + Create (4)**:
+1.  Complete the **Create an Automation Account** page using the following inputs and then select **Review + Create (4)** and click **Create**:
 
     - **Subscription**: Select the default subscription
     - **Resource group**: Use existing / **ContosoRG2** (1)
@@ -90,25 +94,33 @@ In this task, you will deploy the resources the DR environment uses. First, you 
     - **Region**: your secondary region that you choose in step 2 (3)
     
 
-    ![Fields in the Add Automation Account blade are set to the previously defined values.](images/updated111.png "Add Automation Account blade")
+      ![Fields in the Add Automation Account blade are set to the previously defined values.](images/p2t1s12.png "Add Automation Account blade")
+
+      ![](images/p2t1s12.1.png)
 
     > **Note:** Azure Automation accounts can only be created in certain Azure regions, but they can act on any region in Azure (except the Governments of China and Germany). It is not a requirement to have your Azure Automation account in the same region as the failover resources, but it **CANNOT** be in your primary region.
 
 1. On the **Azure Automation Account** page, select **Runbooks (1)**, then click on **Import a runbook (2)**.
 
-    ![The 'Import a runbook' button is highlighted in Azure Automation.](images1/E2T1S10upd1.png "Import a runbook button")
+    ![The 'Import a runbook' button is highlighted in Azure Automation.](images/p2t1s13.png "Import a runbook button")
 
     > **Note**: You must be connected to the **LABVM** to complete the next steps.
 
 1. Select the **Folder** icon on the **Import a runbook** blade and click on the file **ASRRunbookSQL.ps1** from the `C:\HOL\` directory on **LABVM**. Leave the **Runbook type** as **PowerShell Workflow**. Change the workflow name inside the **Runbook script** to **ASRSQLFailover** and select **Import**.
 
-    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/Ex2-t1-step15.png "Import a runbook")
+    ![Fields in the 'Import a runbook' blade are set to the previously defined values.](images/p2t1s14.png "Import a runbook")
 
 1. Once the runbook is imported, the runbook editor will load. You can review the comments to understand the runbook better. Once ready, select **Publish**, followed by **Yes** at the confirmation prompt. This makes the runbook available for use.
 
-    ![On the top menu of the Edit PowerShell Workflow Runbook blade, Publish is selected.](images1/E2T1S12.png "Publish runbook")
+    ![On the top menu of the Edit PowerShell Workflow Runbook blade, Publish is selected.](images/p2t1s15.png "Publish runbook")
+
+    ![](images/p2t1s15.1.png)
 
 1. Repeat the above steps to import and publish the **ASRRunbookWEB.ps1** runbook and change the workflow name inside the Runbook script to **ASRWEBFailover.**
+
+     ![](images/p2t1s16.1.png)
+
+     ![](images/p2t1s16.2.png)
 
 1. Navigate back to **Runbooks**, and ensure that both runbooks show as **Published**.
 
@@ -116,15 +128,17 @@ In this task, you will deploy the resources the DR environment uses. First, you 
 
    > **Note:** When configuring the ASR Recovery Plan for the IaaS deployment, you will use the SQL Runbook as a pre-failover action and the web runbook as a post-failover action. They will run both ways and have been written to take the "direction" of the failover into account when running.
 
+   ![](images/p2t1s17.2.png)
+
    > **Note:** If you still donot see **Published**, edit the workbook and add a space anywhere and then click on Publish.
 
 1. Next, you will create a variable in Azure Automation that contains settings (such as resource group names and VM names) describing your environment. The runbooks you imported require this information, and using variables allows you to avoid hard-coding it in the runbooks themselves.
 
 1. In your **Azure Automation Account** page, select **Variables (1)**, then **Add a variable (2)**.
 
-    ![Azure portal showing variables pane in Azure Automation.](images1/E2T1S15upd.png "Add a variable")
+    ![Azure portal showing variables pane in Azure Automation.](images/p2t1s19.png "Add a variable")
 
-1. In the **New Variable** blade, enter `BCDRIaaSPlan` **(1)** as the variable name. The variable type should be **String**. Paste the following into the variable **Value (2)**, then select **Create (3)**.
+1. In the **New Variable** blade, enter `BCDRIaaSPlan` **(1)** as the variable name. The variable type should be **String (2)**. Paste the following into the variable **Value (3)**, then select **Create (4)**.
 
     ```json
     {
@@ -144,15 +158,15 @@ In this task, you will deploy the resources the DR environment uses. First, you 
     }
     ```
 
-    ![The 'New Variable' blade is filled in with the variable name and value.](images1/E2T1S16upd.png "New Variable")
+    ![The 'New Variable' blade is filled in with the variable name and value.](images/p2t1s20.png "New Variable")
 
 1. Notice that the variable **BCDRIaaSPlan** has been created. 
 
-    ![The 'BCDRIaaSPlan' variable is shown in the Automation Account.](images1/E2T1S16upd1.png "Automation Account variables")
+    ![The 'BCDRIaaSPlan' variable is shown in the Automation Account.](images/p2t1s21.png "Automation Account variables")
 
 1. Before continuing, check that the template deployment you started at the beginning of this task has been completed. From the Azure portal home page, select **Subscriptions**, select your subscription, then click on **Deployments (1)**. 
 
-    ![The 'Contoso-IaaS-DR' template deployment shows as successful.](images1/E2T1S18upd.png "Template status")
+    ![The 'Contoso-IaaS-DR' template deployment shows as successful.](images/p2t1s22.png "Template status")
 
    > **Congratulations** on completing the task! Now, it is time to validate it. Here are the steps:
    > - Click on the **Validate** button for the corresponding task. You can proceed to the next task if you receive a success message. 
@@ -168,7 +182,7 @@ The failover site has been deployed with two additional domain controllers, **AD
 
 1. From the Azure portal home page, select **Subscriptions,** choose your subscription, and click on **Deployments (1)**. Then, open the **Contoso-IaaS-DR (2)** deployment for the DR site.
 
-    ![Click path to the 'Contoso-IaaS-DR' deployment.](images1/E2T2S1upd.png "DR deployment")
+    ![Click path to the 'Contoso-IaaS-DR' deployment.](images/p2t2s1.png "DR deployment")
 
 1.  Select **Template** and review the template contents. Note the use of `dependsOn` to control the deployment sequence carefully. The resources are deployed as follows:
 
@@ -179,19 +193,21 @@ The failover site has been deployed with two additional domain controllers, **AD
     - The DNS settings in VNet2 are then updated to point to these new domain controllers.
     - Other VMs (such as **SQLVM3**) are now able to be deployed.
 
-    ![Azure portal showing the Contoso-IaaS-DR template, with the deployment sequence highlighted.](images1/E2T2S2.png "DR template")
+      ![Azure portal showing the Contoso-IaaS-DR template, with the deployment sequence highlighted.](images/p2t2s2.png "DR template")
 
 1.  Navigate to the **ContosoRG2** resource group. Click on the network interface (NIC) **ADVM3NIC** resources for the ADVM3 and ADVM4 VMs to confirm that their network settings include the static private IP addresses 10.1.3.100 and 10.1.3.101, respectively. On the left-hand side, under **Settings,** click on **IP configurations** and then select **ipconfig1**. Also, change the assignment to **Static** and update the IP address.
 
-    ![Network interface configuration showing a static private IP address for ADVM3.](images1/ipconfig.png "Static IPs")
+    ![](images/p2t2s3.1.png)
 
-1. Navigate to the **VNet2** virtual network. Select **DNS servers** and confirm that the IP addresses for **ADVM3** and **ADVM4** are configured.
+    ![Network interface configuration showing a static private IP address for ADVM3.](images/p2t2s3.2.png "Static IPs")
 
-    ![The Azure portal shows the DNS settings for VNet2.](images1/E2T2S4.png "Template status")
+1. Navigate to the **VNet2** virtual network. Select **DNS** and confirm that the IP addresses for **ADVM3** and **ADVM4** are configured.
+
+    ![The Azure portal shows the DNS settings for VNet2.](images/p2t2s4.2.png "Template status")
 
 1.  Select **Peerings** and confirm the network peers with VNet1.
 
-    ![The Azure portal shows VNet2 is peered with VNet1.](images1/E2T2S5.png "VNet peering")
+    ![The Azure portal shows VNet2 is peered with VNet1.](images/p2t2s5.png "VNet peering")
 
 
 ### Task 3: Configure DR for the SQL Server Tier
@@ -199,6 +215,8 @@ The failover site has been deployed with two additional domain controllers, **AD
 In this task, you will extend the SQL Server Always On Availability Group you created to include **SQLVM3** as an asynchronous replica running in the DR site.
 
 1. Open an Azure Bastion session to **SQLVM3** in the Azure portal. Use `demouser` as the **username** and `Demo!pass123` as the **password**.
+
+     ![](images/p2t3s1.png)
 
 1. Launch **SQL Server Management Studio**. A new dialog box with **SQLVM3 (1)** as the server name will open. Ensure the **Trust server certificate (2)** is selected. Moving on, click on **Connect (3)** to sign on to **SQLVM3**. 
 
@@ -208,7 +226,7 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
     
 1. Expand **Security** and then **Logins**. You will notice that only `SQLVM3\demouser` is listed.
 
-    ![In SQL Server management studio, SQLVM2 is expanded, then Security is expanded, then Login is expanded. Only the SQLVM2\demouser account is seen.](images1/E2T3S28upd1.png)
+    ![In SQL Server management studio, SQLVM2 is expanded, then Security is expanded, then Login is expanded. Only the SQLVM2\demouser account is seen.](images/p2t3s3.png)
 
 1. Right-click on **Logins** and then select **New Login...**
 
@@ -220,15 +238,19 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. Check the box for **sysadmin** and select **OK**.
 
-    ![The Server Roles tab is shown in the Login - New dialog box. In this dialog box, public remains checked, and a check is added to the sysadmin option.](images1/E1T3S31.png)
+    ![The Server Roles tab is shown in the Login - New dialog box. In this dialog box, public remains checked, and a check is added to the sysadmin option.](images/p2t3s6.png)
 
 1. Return to the Azure portal and navigate to the **ContosoSQLLBSecondary** load balancer blade in **ContosoRG2**. Select **Backend pools** and open **BackEndPool1**. Note that the pool is connected to the **VNet2** virtual network. Select **+ Add**.
 
-   ![Azure portal showing where to select Add on the ContosoSQLLBSecondary load balancer backend pool to add a new VM.](images/EX2-T3-S1.png "Backend pool")
+   ![](images/p2t3s7.1.png)
+
+   ![](images/p2t3s7.2.png)
 
 1. Select **SQLVM3** and click on **Add**.  Select **Save** on **BackEndPool1** to save changes.
 
-     ![Azure portal showing SQLVM3 being added to the ContosoSQLLBSecondary load balancer backend pool.](images1/E2T3S2.png "SQL VM added to backend pool")
+     ![Azure portal showing SQLVM3 being added to the ContosoSQLLBSecondary load balancer backend pool.](images/p2t3s8.png "SQL VM added to backend pool")
+
+     ![](images/p2t3s8.2.png)
 
    >**Note:** The DR site is configured with a single SQL Server VM for this lab. Therefore, using a load balancer is not strictly required. However, if necessary, it allows the DR site to be extended to include its own HA cluster.
 
@@ -242,7 +264,9 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. Select **Start** and then **Windows Administrative Tools**. Locate and open the **Failover Cluster Manager**. Expand **AOGCLUSTER** and select **Nodes**. **SQLVM3** is now included in the list, with the status: **Up**.
 
-    ![In Failover Cluster Manager, Nodes is selected in the tree view, and three nodes display in the details pane.](images/dr-fcm-3nodes.png "Failover Cluster Manager")
+    ![In Failover Cluster Manager, Nodes is selected in the tree view, and three nodes display in the details pane.](images/p2t3s11.png "Failover Cluster Manager")
+
+    ![](images/p2t3s11.2.png)
 
 1.  Return to the Azure portal. Locate **SQLVM3** and connect to the VM using Azure Bastion with the **username** `demouser@contoso.com` and **password** `Demo!pass123`.
 
@@ -258,15 +282,17 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
     ![In the SQL Server Properties dialog box, on the AlwaysOn High Availability tab, the Enable AlwaysOn Availability Groups checkbox is checked and the Apply button is selected.](images/image168.png "SQL Server Properties dialog box")
 
-    ![A pop-up warns that any changes made will not take effect until the service stops and restarts. The OK button is selected.](images/image169.png "Warning pop-up")
+    ![A pop-up warns that any changes made will not take effect until the service stops and restarts. The OK button is selected.](images/p2t3s15.png "Warning pop-up")
 
 1. On the **Log On** tab, change the service account to `contoso\demouser` using `Demo!pass123` as the **password**. Select **OK** to accept the changes, and then select **Yes** to confirm the restart of the server.
 
-    ![In the SQL Server Properties dialog box, on the Log On tab, fields are set to the previously defined settings. The OK button is selected.](images1/E2T3S10.png "SQL Server Properties dialog box")
+    ![In the SQL Server Properties dialog box, on the Log On tab, fields are set to the previously defined settings. The OK button is selected.](images/p2t3s16.png "SQL Server Properties dialog box")
 
     ![A pop-up asks you to confirm that you want to make the changes and restart the service. The Yes button is selected.](images/image171.png "Confirm Account Change pop-up")
     
 1. Return to your session with **SQLVM1**. Open **Microsoft SQL Server Management Studio 20** and connect to the local instance of SQL Server.
+
+     ![](images/p2t3s17.png)
 
 1. Expand the **Always On High Availability** node. Under **Availability Group Listeners**, right-click on **BCDRAOG** and select **Properties**.
 
@@ -274,15 +300,15 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. On the BCDRAOG Listener properties dialog box, select **Add**.
 
-    ![On the BCDRAOG Listener properties dialog, 'Add' is selected.](images1/E2T3S13.png "Listener - Add")
+    ![On the BCDRAOG Listener properties dialog, 'Add' is selected.](images/p2t3s19.png "Listener - Add")
 
 1. On the Add IP Address dialog box, check that the subnet is **10.1.2.0/24** (the Data subnet in VNet2). Enter the IP address **10.1.2.100** (the frontend IP of the SQL load balancer in VNet2). Select **OK**.
 
-    ![On the BCDRAOG Listener Add IP Address dialog, the IP address is entered as specified.](images1/E2T3S14.png "Listener - IP")
+    ![On the BCDRAOG Listener Add IP Address dialog, the IP address is entered as specified.](images/p2t3s20.png "Listener - IP")
 
 1. The **BCDRAOG Listener properties** dialogue box should now show two IP addresses. Select **OK** to close the box and commit the change.
 
-    ![On the BCDRAOG Listener properties dialog, two IP addresses are shown. 'OK' is selected.](images1/E2T3S15.png "Listener - two IPs")
+    ![On the BCDRAOG Listener properties dialog, two IP addresses are shown. 'OK' is selected.](images/p2t3s21.png "Listener - two IPs")
 
 1. Under **Availability Groups**, right-click on **BCDRAOG (Primary)** and select **Add Replica..** to open the Add Replica wizard.
 
@@ -290,11 +316,15 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. Select **Next** on the Wizard.
 
-    ![On the Add Replica Wizard 'Introduction' page, Next is selected.](images1/E2T3S17.png "Add Replica wizard")
+    ![On the Add Replica Wizard 'Introduction' page, Next is selected.](images/p2t3s23.png "Add Replica wizard")
 
 1. Select **Connect** to connect to SQLVM2, then **Connect** again on the 'Connect to Server' prompt, and click **Next**.
 
-    ![On the Add Replica Wizard 'Connect to Replicas' page, SQLVM2 is connected and Next is selected.](images1/E2T3S18.png "Connect to Replicas page")
+    ![On the Add Replica Wizard 'Connect to Replicas' page, SQLVM2 is connected and Next is selected.](images/p2t3s24.1.png "Connect to Replicas page")
+
+    ![](images/p2t3s24.2.png)
+
+    ![](images/p2t3s24.3.png)
 
 1. On the **Specify Replicas** page, select **Add Replica...**.
 
@@ -310,15 +340,15 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. On the **Select Data Synchronization** page, make sure that **Automatic seeding** is selected and click on **Next**.
 
-    ![On the Select Data Synchronization page, the radio button for Automatic seeding is selected. The Next button is selected at the bottom of the form.](images1/E2T3S22.png "Select Data Synchronization page")
+    ![On the Select Data Synchronization page, the radio button for Automatic seeding is selected. The Next button is selected at the bottom of the form.](images/p2t3s28.png "Select Data Synchronization page")
 
 1. On the **Validation** screen, everything should be green except for a warning for 'Checking the listener configuration.' This will be addressed later. To proceed, select **Next**.
 
-    ![The Validation screen displays a list of everything it is checking, and the results for each, which all display success except the last one. The Next button is selected.](images1/E2T3S23.png "Validation screen")
+    ![The Validation screen displays a list of everything it is checking, and the results for each, which all display success except the last one. The Next button is selected.](images/p2t3s29.png "Validation screen")
 
 1. On the **Summary page**, select **Finish**.
 
-    ![On the Summary page, the Finish button is selected.](images1/E2T3S241.png "Summary page")
+    ![On the Summary page, the Finish button is selected.](images/p2t3s30.png "Summary page")
 
 1. Once the AOG is built, check that each task has "**successful**" written beside it and select **Close**.
 
@@ -344,7 +374,7 @@ In this task, you will extend the SQL Server Always On Availability Group you cr
 
 1. Return to **Failover Cluster Manager** on **SQLVM1**, select **Roles (1)**, then **BCDRAOG (2)**. Notice how the **Resources (3)** tab shows that the new IP address **10.1.2.100** has been added and is currently offline.
 
-    ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images1/E2T3S281.png "Failover Cluster Manager")
+    ![In the Failover Cluster Manager tree view, Roles is selected. Under Roles, BCDRAOG is selected, and details of the role display.](images/p2t3s34.png "Failover Cluster Manager")
 
 
 ### Task 4: Configure DR for the Web Tier
@@ -359,7 +389,7 @@ Azure Site Recovery calls custom scripts in Azure Automation to add the recovere
 
 1. Under **Getting Started**, select **Site Recovery (1)**.  Next, choose **Step 1: Enable replication (2)** in the **For On-Premises Machines and Azure VMs** section. 
 
-    ![In the ASR blade, Getting Started is highlighted. Under For On-Premises Machines and Azure VMs, Step 1: Enable replication is selected.](images/dr-asr-1upd.png "Step 1 selected")
+    ![In the ASR blade, Getting Started is highlighted. Under For On-Premises Machines and Azure VMs, Step 1: Enable replication is selected.](images/p2t4s2.png "Step 1 selected")
 
 1. In **Step 1 - Source,** select the following inputs and then click on **Next (5)**:
 
@@ -368,36 +398,36 @@ Azure Site Recovery calls custom scripts in Azure Automation to add the recovere
     - **Virtual machine deployment model**: Resource Manager **(3)**.
     - **Disaster Recovery between Availability Zones?**: No (this option is for DR between availability zones *within* a region) **(4)**.
 
-    ![In the Source blade, fields are set to the previously defined settings.](images/EX2-T4-S31.png "Source blade")
+      ![In the Source blade, fields are set to the previously defined settings.](images/p2t4s3.png "Source blade")
 
 1. On **Step 2 - Virtual Machines**, select **WebVM1** and **WebVM2** and click **Next**.
 
-    ![In the Select virtual machines blade, the check boxes for WebVM1 and WebVM2 are selected.](images/EX2-T4-S4.png "Select virtual machines blade")
+    ![In the Select virtual machines blade, the check boxes for WebVM1 and WebVM2 are selected.](images/p2t4s4.png "Select virtual machines blade")
 
 1. Select the following inputs on the **Step 3 - Replication settings** tab and click **Next (4).**  
    - **Target location**: *Select the secondary region you had selected previously* **(1)**.
    - **Target resource group**: ContosoRG2 **(2)**.
    - **Failover virtual network**: VNet2 **(3)**.
 
-    ![In the Customize target settings blade, the Target location is set to East US 2 and the customize button highlighted](images/EX2-T5-S3.png "Configure settings blade")
+      ![In the Customize target settings blade, the Target location is set to East US 2 and the customize button highlighted](images/EX2-T5-S3.png "Configure settings blade")
 
 1.  Select the following inputs for **Step 4: Manage** tab and click **Next (3)**.
 
     - **Update settings**: Allow ASR to manage **(1)**.
     - **Automation Account**: use your existing Automation Account **(2)**.
     
-    ![The Replication Policy settings use default values.](images/EX2-T4-ns31.png "Replication policy")
+      ![The Replication Policy settings use default values.](images/EX2-T4-ns31.png "Replication policy")
 
 1. Next, in **Step 5** in the **Review** tab, select **Enable replication**.
 
-    ![Screenshot of the Enable replication button.](images/EX2-T3-S9.png "Enable replication button")
+    ![Screenshot of the Enable replication button.](images/p2t4s7.png "Enable replication button")
 
 1. The Azure portal will start the deployment. This will take approximately 10 minutes to complete. Wait for replication to complete before moving to the next step.
 
     ![A message is displayed indicating Enabling replication for two vm(s) has successfully completed.](images/image234.png "Enabling replication for two vm(s)")
 
     > **Note:** Monitor the jobs if the replication status indicates failure **(1)**. You can move on to the next step if all jobs are successful **(2)**.
-    >  ![A message is displayed indicating replication failure.](images/failurerep.png "Enabling replication for two vm(s)")
+    >  ![A message is displayed indicating replication failure.](images/p2t4s8.png "Enabling replication for two vm(s)")
 
 1. The **BCDRRSV<inject key="DeploymentID" enableCopy="false"/>** blade should still have the **Site Recovery (1)** option selected under **Getting started**. Then, choose **2: Manage recovery plans (2)**.
 
@@ -431,11 +461,11 @@ Azure Site Recovery calls custom scripts in Azure Automation to add the recovere
 
 1. Once the **BCDRIaaSPlan** blade loads, select the **ellipsis (2)** icon next to **All groups failover (1)**. Click on **Add pre-action (3)** from the context menu.
 
-    ![In the Recovery plan blade, the right-click menu for All groups failover displays and Add pre-action is selected.](images1/E2T4S141.png "Recovery plan blade")
+    ![In the Recovery plan blade, the right-click menu for All groups failover displays and Add pre-action is selected.](images/p2t4s14.png "Recovery plan blade")
 
-1. Select **Script** on the **Insert action** blade, and then insert the name as **ASRSQLFailover (1).** Ensure that your **Azure Automation account (2)** is selected. Choose the runbook name **ASRSQLFailover (3)**. Click on **OK (4)**.
+1. Select **Script (1)** on the **Insert action** blade, and then insert the name as **ASRSQLFailover (2).** Ensure that your **Azure Automation account (3)** is selected. Choose the runbook name **ASRSQLFailover (4)**. Click on **OK (5)**.
 
-    ![Fields in the Insert action blade are set to the ASRRunBookSQL script.](images/Ex-2-t3-step171.png "Insert action blade")
+    ![Fields in the Insert action blade are set to the ASRRunBookSQL script.](images/p2t4s15.png "Insert action blade")
 
     > **Note:** As noted on the 'Insert action' blade, the ASRSQLFailover runbook will be executed on both failover and failback. The runbook has been written to support both scenarios.
     > 
@@ -479,7 +509,7 @@ In this task, you will use the Front Door approach to configure a highly availab
 
 1.  You will build a front door to direct traffic to your primary and secondary sites. From the Azure portal, select **+Create a resource**, then search for and select **Front Door and CDN profiles (1)**. Select **Create (2)**.
 
-    ![frontdoor.](images/azfrontdoor.png "Replicated Items")
+    ![frontdoor.](images/p2t5s1.png "Replicated Items")
 
 1. Select **Azure Front Door** and **Custom create**. Then select **Continue to create a Front Door**.
 
@@ -501,7 +531,9 @@ In this task, you will use the Front Door approach to configure a highly availab
     - **Endpoint name**: **contosoiaas (1)**
     - **Status**: Leave **Enable this endpoint** selected
 
-    ![Fields in the Add a frontend host pane are set to the previously defined settings.](images1/ex2-task5-step5upd.png "Add a frontend host pane.")
+      ![](images/p2t5s5.png)
+
+      ![Fields in the Add a frontend host pane are set to the previously defined settings.](images1/ex2-task5-step5upd.png "Add a frontend host pane.")
 
 1. Under **Routes,** select **+ Add a route**.
 
