@@ -37,7 +37,8 @@ The architecture for this lab involves the following key components:
 - **Backend Pools:** A collection of resources, typically virtual machines or application gateway servers, that receive and handle traffic from a load balancer or application gateway. In Azure, backend pools are used to distribute network traffic across multiple servers, ensuring high availability and scalability.
 - **SQL Server Management Studio (SSMS):** A comprehensive tool for managing SQL Server instances, enabling database administration, query execution, and performance monitoring in a user-friendly interface.
 
-## Getting Started with Your Building a Resilient IaaS Architecture Hands-On Lab
+## Getting Started with Lab
+
 Welcome to your Building a Resilient IaaS Architecture Hands-On Lab! We have prepared a seamless environment for you to explore and learn about Azure services. Let's begin by making the most of this experience:
 
 ## Accessing Your Lab Environment
@@ -80,61 +81,31 @@ To adjust the zoom level for the environment page, click the **A↕ : 100%** ico
  
     ![](images/GS1.png "Enter Password")    
 
-1. You will see the **Sign in to continue to Microsoft Azure** tab. Here, enter your credentials:
+1. On the **Sign in to Microsoft Azure** tab you will see the login screen, in that enter the following email/username, and click on **Next (2)**. 
  
-   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
+   - **Email/Username (1):** <inject key="AzureAdUserEmail"></inject>
  
-    ![](images/GS2.png "Enter Email")
+    ![](images/sign-in-page.png "Enter Email")
  
-1. Next, provide your password:
+1. Now enter the following password and click on **Sign in (2)**.
  
-   - **Password:** <inject key="AzureAdUserPassword"></inject>
+   - **Temporary Access Pass: (1):** <inject key="AzureAdUserPassword"></inject>
  
-    ![](images/GS3.png "Enter Password")
-
-1. If you see the pop-up **Action Required**, leave it as default and then click on **Ask later**. Next, on the **Help us protect your account** pop-up click on **Skip for now** (14 days until this is required), and then select **Next**.
-
-    ![](images/asklater.png "Enter Password")
-
-   >**NOTE:** Do not enable MFA. Select **Ask Later**.
+    ![](images/tap-password.png "Enter Password")
  
 1. If prompted to **Stay signed in**, you can click on **No**.
 
-    ![](images/GS9.png "Enter Password")
+    ![](images/Sign-in-no.png "Enter Password")
  
-1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click on **Cancel** to skip the tour.
+1. If a **Welcome to Microsoft Azure** pop-up window appears, simply click on **Maybe later** to skip the tour.
+
+   ![](images/cancel-tour.png)
    
 1. Please note that for all exercises, we will be logging into the virtual machines via Bastion. To use the copy-paste functionality, click the arrow to copy the content to your clipboard, and then paste it as needed.
 
    ![](images/build5.png "Enter Password")
 
    ![](images/build6.png "Enter Password")
-
-## Steps to Proceed with MFA Setup if "Ask Later" Option is Not Visible
-
-1. At the **"More information required"** prompt, select **Next**.
-
-1. On the **"Keep your account secure"** page, select **Next** twice.
-
-1. **Note:** If you don’t have the Microsoft Authenticator app installed on your mobile device:
-
-   - Open **Google Play Store** (Android) or **App Store** (iOS).
-   - Search for **Microsoft Authenticator** and tap **Install**.
-   - Open the **Microsoft Authenticator** app, select **Add account**, then choose **Work or school account**.
-
-1. A **QR code** will be displayed on your computer screen.
-
-1. In the Authenticator app, select **Scan a QR code** and scan the code displayed on your screen.
-
-1. After scanning, click **Next** to proceed.
-
-1. On your phone, enter the number shown on your computer screen in the Authenticator app and select **Next**.
-       
-1. If prompted to stay signed in, you can click **No**.
-
-1. If a **Welcome to Microsoft Azure** popup window appears, click **Cancel** to skip the tour.
- 
-1. Now, click on the **Next** from the lower right corner to move to the next page.
 
 ## Support Contact
 The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
@@ -149,6 +120,5 @@ Now, you are all set to explore the powerful world of technology. Feel free to r
 Now, click **Next** from the lower right corner to move to the next page.
 
    ![](images/GS4.png)
-
 
 ### Happy Learning!!

@@ -532,6 +532,6 @@ In this task, you will configure a High Availability web tier. This comprises tw
 
 In this exercise, you deployed High Availability (HA) resources and configured HA for each tier, including the Domain Controller, SQL Server, and Web tiers. This ensured redundancy and fault tolerance across all critical application components.
 
-### You have successfully completed the exercise.
-Click **Next** from the lower right corner to move to the next page.
+### You have successfully completed the exercise. Click on Next >> to proceed with the next exercise.
 
+   ![](images/GS4.png)

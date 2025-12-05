@@ -228,5 +228,6 @@ Before enabling Azure Backup, you will register the SQL Server VMs with the SQL 
 
 In this exercise, you created Azure Backup resources and enabled backup for the Web and SQL Server tiers, ensuring critical application components' data protection and recovery capabilities.
 
-### You have successfully completed the exercise.
-Click **Next** from the lower right corner to move to the next page.
+### You have successfully completed the exercise. Click on Next >> to proceed with the next exercise.
+
+   ![](images/GS4.png)

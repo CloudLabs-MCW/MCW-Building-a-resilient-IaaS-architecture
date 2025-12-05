@@ -607,5 +607,6 @@ In this task, you will use the Front Door approach to configure a highly availab
 
 In this exercise, you have deployed Disaster Recovery (DR) resources and inspected DR for the Domain Controller tier. DR was then configured for both the SQL Server and web tiers, followed by setting up a public endpoint using Azure Front Door.
 
-### You have successfully completed the exercise.
-Click **Next** from the lower right corner to move to the next page.
+### You have successfully completed the exercise. Click on Next >> to proceed with the next exercise.
+
+   ![](images/GS4.png)
